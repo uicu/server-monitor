@@ -5,7 +5,7 @@ import json from 'koa-json';
 import bodyparser from 'koa-bodyparser';
 import logger from 'koa-logger';
 import koaStatic from 'koa-static';
-import index from './routes/index';
+import routing from './routes/index';
 
 const app = new Koa();
 
@@ -35,8 +35,7 @@ app.use(async (ctx: Koa.Context, next: Koa.Next) => {
 });
 
 // routes
-app.use(index.routes());
-app.use(index.allowedMethods());
+routing(app);
 
 // error-handling
 app.on('error', (err, ctx) => {

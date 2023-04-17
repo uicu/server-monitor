@@ -1,20 +1,34 @@
 import Koa from 'koa';
-import Router from 'koa-router';
+import path from 'path';
+import glob from 'glob'; // 获取匹配规则的所有文件
 
-const router = new Router();
+const PROJECT_STATUS = process.env.PROJECT_STATUS === 'source';
 
-router.get('/', async (ctx: Koa.Context) => {
-	ctx.body = 'Hello Koa 2 monitor!';
-});
+const route = (app: Koa) => {
+	try {
+		glob
+			.sync(
+				path.resolve(
+					__dirname,
+					PROJECT_STATUS ? './**/!(index).ts' : './**/!(index).js'
+				)
+			)
+			.forEach((file: string) => {
+				if (PROJECT_STATUS) {
+					import(file).then(router => {
+						app.use(router.default.routes());
+						app.use(router.default.allowedMethods());
+					});
+				} else {
+					// eslint-disable-next-line @typescript-eslint/no-var-requires
+					const router = require(file);
+					app.use(router.default.routes());
+					app.use(router.default.allowedMethods());
+				}
+			});
+	} catch (err) {
+		console.log(err);
+	}
+};
 
-router.get('/string', async (ctx: Koa.Context) => {
-	ctx.body = 'koa2 string';
-});
-
-router.get('/json', async (ctx: Koa.Context) => {
-	ctx.body = {
-		title: 'koa2 json'
-	};
-});
-
-export default router;
+export default route;

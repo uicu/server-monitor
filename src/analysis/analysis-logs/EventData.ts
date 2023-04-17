@@ -4,7 +4,7 @@
 
 class EventData {
 	result: {
-		[propName: string]: { pv?: string; uv?: string };
+		[propName: string]: { pv?: number; uv?: number };
 	};
 	curData: {
 		category?: string;

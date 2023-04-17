@@ -6,6 +6,14 @@ const { NODE_ENV } = process.env;
 
 // 类型定义
 export interface ConfigParam {
+	// mongodb 连接配置, nodejs最新版，需要把localhost改成127.0.0.1
+	mongodbConf: {
+		host: string;
+		user: string;
+		password: string;
+		port: number;
+		dbName: string;
+	};
 	// access_log 日志文件目录，要和 nginx_conf/dev/event.conf 保持一致！
 	accessLogPath: string;
 	// cors origin

@@ -16,6 +16,7 @@ import { CronJob } from 'cron';
     └───────────────────────── second (0 - 59, OPTIONAL)
  */
 import splitLogFile from './split-log-file/index';
+import analysisLogs from './analysis-logs/index';
 import rmLogs from './rm-logs/index';
 import config from '../config';
 
@@ -60,6 +61,15 @@ function splitLogFileTimed() {
 }
 
 /**
+ * 定时分析日志，记录到 mongodb
+ */
+function analysisLogsTimed() {
+	const cronTime = '0 0 4 * * *'; // 每天的 4:00:00 ，此时凌晨，访问量较少，服务器资源处于闲置状态
+	schedule(cronTime, analysisLogs);
+	console.log('定时分支日志并入库', cronTime);
+}
+
+/**
  * 定时删除过期的日志文件
  */
 function rmLogsTimed() {
@@ -69,5 +79,6 @@ function rmLogsTimed() {
 }
 export default {
 	splitLogFileTimed,
+	analysisLogsTimed,
 	rmLogsTimed
 };

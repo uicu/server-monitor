@@ -11,6 +11,7 @@ import fse from 'fs-extra';
 import EventData from './EventData';
 import config from '../../config';
 import util from '../utils/util';
+import writeDB from './writeDB';
 const { accessLogPath, distFolderName: DIST_FOLDER_NAME } = config;
 const { genYesterdayLogFileName, formatNow } = util;
 
@@ -69,9 +70,13 @@ function analysisLogs() {
 		// 逐行读取结束，存入数据库
 		const result = eventData.getResult();
 		console.log('3.分析结果', JSON.stringify(result));
+		await writeDB(result);
+		console.log('4.入库完成');
+
+		console.log('----------- 分析日志并入库 结束 -----------');
 	});
 }
 
-analysisLogs();
+// analysisLogs();
 
-// export default analysisLogs
+export default analysisLogs;

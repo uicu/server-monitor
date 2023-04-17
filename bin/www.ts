@@ -9,10 +9,12 @@ import http from 'http';
 import app from '../src/app';
 import analysis from '../src/analysis/index';
 
-const { splitLogFileTimed } = analysis;
+const { splitLogFileTimed, rmLogsTimed } = analysis;
 
 // 开启定时拆分日志文件
 splitLogFileTimed();
+// 定时删除过期日志文件
+rmLogsTimed();
 
 /**
  * Get port from environment and store in Express.

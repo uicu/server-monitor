@@ -16,6 +16,7 @@ import { CronJob } from 'cron';
     └───────────────────────── second (0 - 59, OPTIONAL)
  */
 import splitLogFile from './split-log-file/index';
+import rmLogs from './rm-logs/index';
 import config from '../config';
 
 const { accessLogPath } = config;
@@ -58,6 +59,15 @@ function splitLogFileTimed() {
 	console.log('定时拆分日志文件', cronTime);
 }
 
+/**
+ * 定时删除过期的日志文件
+ */
+function rmLogsTimed() {
+	const cronTime = '0 30 4 * * *'; // 每天的 4:30:00 ，此时凌晨，访问量较少，服务器资源处于闲置状态
+	schedule(cronTime, rmLogs);
+	console.log('定时删除过期日志文件', cronTime);
+}
 export default {
-	splitLogFileTimed
+	splitLogFileTimed,
+	rmLogsTimed
 };

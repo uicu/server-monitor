@@ -7,6 +7,12 @@ import 'dotenv/config';
 import debug from 'debug';
 import http from 'http';
 import app from '../src/app';
+import analysis from '../src/analysis/index';
+
+const { splitLogFileTimed } = analysis;
+
+// 开启定时拆分日志文件
+splitLogFileTimed();
 
 /**
  * Get port from environment and store in Express.

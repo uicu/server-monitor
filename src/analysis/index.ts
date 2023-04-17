@@ -27,7 +27,7 @@ console.log(
 	accessLogPath,
 	fse.pathExistsSync(accessLogPath)
 );
-console.log('accessLogPath 自文件', accessLogPathFiles);
+console.log('accessLogPath 子文件', accessLogPathFiles);
 
 /**
  * 开始定时任务

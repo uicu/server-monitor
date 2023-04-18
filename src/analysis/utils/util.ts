@@ -22,6 +22,14 @@ function yesterdayDate() {
 }
 
 /**
+ * 日志文件格式
+ */
+function formatLogFile(d: Date) {
+	const f = format(d, 'yyyy-MM-dd');
+	return `${f}.log`;
+}
+
+/**
  * @description 生成昨天日志（按天拆分）文件
  */
 function genYesterdayLogFileName() {
@@ -30,8 +38,22 @@ function genYesterdayLogFileName() {
 	return `${f}.log`;
 }
 
+/**
+ * 生成一个历史日志文件
+ */
+function genOldLogFileName(days = 0) {
+	if (!days) {
+		throw new Error('genOldLogFileName 参数错误');
+	}
+
+	let d = new Date();
+	d = new Date(d.getTime() - days * 24 * 60 * 60 * 1000);
+	return formatLogFile(d);
+}
+
 export default {
 	yesterdayDate,
 	genYesterdayLogFileName,
-	formatNow
+	formatNow,
+	genOldLogFileName
 };

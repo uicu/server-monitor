@@ -6,10 +6,10 @@ import path from 'path';
 import fse from 'fs-extra';
 import config from '../../config';
 import util from '../utils/util';
-const { accessLogPath, distFolderName: DIST_FOLDER_NAME } = config;
+const { distFolderName: DIST_FOLDER_NAME } = config;
 const { formatNow } = util;
 
-function rmLogs() {
+function rmLogs(accessLogPath: string) {
 	console.log('----------- 删除过期日志文件 开始 -----------');
 	console.log('当前的时间', formatNow());
 

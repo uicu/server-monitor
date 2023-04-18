@@ -56,7 +56,7 @@ function schedule(cronTime: string, onTick: () => void) {
  */
 function splitLogFileTimed() {
 	const cronTime = '0 0 0 * * *'; // 每天的 0:00:00
-	schedule(cronTime, splitLogFile);
+	schedule(cronTime, () => splitLogFile(accessLogPath));
 	console.log('定时拆分日志文件', cronTime);
 }
 
@@ -65,7 +65,7 @@ function splitLogFileTimed() {
  */
 function analysisLogsTimed() {
 	const cronTime = '0 0 4 * * *'; // 每天的 4:00:00 ，此时凌晨，访问量较少，服务器资源处于闲置状态
-	schedule(cronTime, analysisLogs);
+	schedule(cronTime, () => analysisLogs(accessLogPath));
 	console.log('定时分支日志并入库', cronTime);
 }
 
@@ -74,7 +74,7 @@ function analysisLogsTimed() {
  */
 function rmLogsTimed() {
 	const cronTime = '0 30 4 * * *'; // 每天的 4:30:00 ，此时凌晨，访问量较少，服务器资源处于闲置状态
-	schedule(cronTime, rmLogs);
+	schedule(cronTime, () => rmLogs(accessLogPath));
 	console.log('定时删除过期日志文件', cronTime);
 }
 export default {

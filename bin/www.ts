@@ -7,22 +7,12 @@ import 'dotenv/config';
 import debug from 'debug';
 import http from 'http';
 import app from '../src/app';
-import analysis from '../src/analysis/index';
-
-const { splitLogFileTimed, analysisLogsTimed, rmLogsTimed } = analysis;
-
-// 开启定时拆分日志文件
-splitLogFileTimed();
-// 定时分析日志，结果入库
-analysisLogsTimed();
-// 定时删除过期日志文件
-rmLogsTimed();
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3001');
+const port = normalizePort(process.env.PORT || '3002');
 // app.set('port', port);
 
 /**

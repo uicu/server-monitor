@@ -13,3 +13,6 @@
 
 
 5: 提供Open Api
+
+## 架构图
+![server-monitor架构图](./document/images/0-1.jpg "server-monitor架构图")

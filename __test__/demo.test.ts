@@ -2,8 +2,10 @@
  * @description test demo
  */
 
-describe('test demo', () => {
-	test('1 + 1 = 2', () => {
-		expect(1 + 1).toBe(2);
-	});
+test('1+1 = 2', () => {
+	expect(1 + 1).toBe(2);
+});
+
+test('demo', () => {
+	expect(1).toBe(1);
 });

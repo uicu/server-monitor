@@ -14,12 +14,14 @@ import cors from './middlewares/cors';
 import analysis from './analysis/index';
 const { splitLogFileTimed, analysisLogsTimed, rmLogsTimed } = analysis;
 
-// 开启定时拆分日志文件
-splitLogFileTimed();
-// 定时分析日志，结果入库
-analysisLogsTimed();
-// 定时删除过期日志文件
-rmLogsTimed();
+if (process.env.NODE_ENV && process.env.NODE_ENV.indexOf('test') !== 0) {
+	// 开启定时拆分日志文件
+	splitLogFileTimed();
+	// 定时分析日志，结果入库
+	analysisLogsTimed();
+	// 定时删除过期日志文件
+	rmLogsTimed();
+}
 
 const app = new Koa();
 

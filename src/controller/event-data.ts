@@ -24,8 +24,8 @@ async function getEventData(
 		label?: string;
 		value?: string;
 	},
-	startDate: string,
-	endDate: string
+	startDate?: string,
+	endDate?: string
 ) {
 	const { category, action, label, value } = data;
 

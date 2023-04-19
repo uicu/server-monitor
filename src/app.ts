@@ -14,7 +14,7 @@ import cors from './middlewares/cors';
 import analysis from './analysis/index';
 const { splitLogFileTimed, analysisLogsTimed, rmLogsTimed } = analysis;
 
-if (process.env.NODE_ENV && process.env.NODE_ENV.indexOf('test') !== 0) {
+if (process.env.NODE_ENV && process.env.NODE_ENV.indexOf('test_') !== 0) {
 	// 开启定时拆分日志文件
 	splitLogFileTimed();
 	// 定时分析日志，结果入库

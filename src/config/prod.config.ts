@@ -11,7 +11,7 @@ const config: ConfigParam = {
 		port: 27017,
 		dbName: 'server-monitor'
 	},
-	// access_log 日志文件目录，要和 nginx_conf/dev/event.conf 保持一致！
+	// access_log 日志文件目录，要和 nginx_conf/prod/event.conf 保持一致！
 	accessLogPath: '/Users/wfp/nginx_logs/event_analytics',
 	// cors origin
 	corsOrigin: '*',

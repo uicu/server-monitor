@@ -11,8 +11,8 @@ const config: ConfigParam = {
 		port: 27017,
 		dbName: 'server-monitor'
 	},
-	// access_log 日志文件目录，要和 nginx_conf/dev/event.conf 保持一致！
-	accessLogPath: '/Users/wfp/nginx_logs/event_analytics',
+	// access_log 日志文件目录，见 nginx_conf/test/event.conf 和 Dockerfile
+	accessLogPath: '/app/nginx_logs/server-monitor',
 	// cors origin
 	corsOrigin: '*',
 	distFolderName: 'logs_by_day'

@@ -1,0 +1,7 @@
+.git
+node_modules
+logs
+.docker-volumes
+__test__
+nginx_conf
+nginx_files

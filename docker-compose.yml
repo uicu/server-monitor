@@ -1,0 +1,12 @@
+version: '3'
+services:
+    server-monitor:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: server-monitor # 依赖于当前 Dockerfile 创建镜像
+        container_name: server-monitor
+        ports:
+            - 8080:3002 # 宿主机通过 8080 访问
+        volumes:
+            - /home/work/nginx_logs/server-monitor:/app/nginx_logs/server-monitor # 见 nginx_conf/test/event.conf 和 Dockerfile

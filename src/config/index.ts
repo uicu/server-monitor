@@ -33,11 +33,9 @@ class GlobalConfig {
 		let config: ConfigParam = { ...devConfig };
 		switch (NODE_ENV) {
 			case 'development':
-			case 'test_local':
 				config = Object.assign(config, devConfig);
 				break;
 			case 'testing':
-			case 'test_remote':
 				config = Object.assign(config, testConfig);
 				break;
 			case 'production':

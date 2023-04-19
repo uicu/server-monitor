@@ -14,5 +14,7 @@ RUN npm i
 RUN npm i pm2 -g
 RUN npm run build
 
+RUN chmod +x ./shell/start.sh
+
 # 宿主机 ip 指向 docker-host ，以方便 docker 内部访问宿主机
-CMD ["/sbin/ip route|awk '/default/ { print $3,"\tdocker-host" }' >> /etc/hosts", "./shell/start.sh"]
+CMD /sbin/ip route|awk '/default/ { print $3,"\tdocker-host" }' >> /etc/hosts && ./shell/start.sh

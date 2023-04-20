@@ -23,7 +23,7 @@ import config from '../config';
 const { accessLogPath } = config;
 
 // 判断 accessLogPath 是否存在，读取 accessLogPath 的内容
-if (process.env.NODE_ENV && process.env.NODE_ENV.indexOf('test_') !== 0) {
+try {
 	const accessLogPathFiles = fse.readdirSync(accessLogPath);
 	console.log(
 		'accessLogPath 是否存在',
@@ -31,6 +31,8 @@ if (process.env.NODE_ENV && process.env.NODE_ENV.indexOf('test_') !== 0) {
 		fse.pathExistsSync(accessLogPath)
 	);
 	console.log('accessLogPath 子文件', accessLogPathFiles);
+} catch (error) {
+	console.log('error', error);
 }
 
 /**
